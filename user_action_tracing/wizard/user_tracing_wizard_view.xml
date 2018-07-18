@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="user_tracing_wizard_form" model="ir.ui.view">
+            <field name="name">user.tracing.wizard.form</field>
+            <field name="model">user.tracing.wizard</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Auditoría de Usuarios">
+                    <group>
+                        <group>
+                            <field name="model_id"/>
+                        </group>
+                        <group>
+                            <field name="registry"/>
+                        </group>
+                    </group>
+                    <separator string="Resultado"/>
+                    <field name="lines" nolabel="1">
+                        <tree editable="bottom" create="false" edit="false" delete="false">
+                            <field name="wizard_id" invisible="1"/>
+                            <field name="record_id"/>
+                            <field name="create_user_id"/>
+                            <field name="creation_date"/>
+                            <field name="write_user_id"/>
+                            <field name="edition_date"/>
+                        </tree>
+                    </field>
+                    <footer>
+                        <button special="cancel" string="Salir" class="oe_link"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="user_tracing_wizard_action" model="ir.actions.act_window">
+            <field name="name">Auditoría de Usuarios</field>
+            <field name="res_model">user.tracing.wizard</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem parent="base.menu_security"
+            id="user_tracing_wizard_menu"
+            action="user_tracing_wizard_action"
+            groups="base.group_no_one" sequence="30"/>
+    </data>
+</odoo>
